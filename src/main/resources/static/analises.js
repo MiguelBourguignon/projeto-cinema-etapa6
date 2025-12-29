@@ -43,7 +43,25 @@ function listarAnalises() {
 
 $("#formAnalise").submit(function(event) {
     event.preventDefault();
+    
+    const filmeId = $("#filmeIdInput").val();
+    const texto = $("#textoAnalise").val().trim();
+    const nota = $("#nota").val();
 
+    if (!filmeId) {
+        alert("Você precisa informar o ID do filme!");
+        return;
+    }
+
+    if (texto.length < 10) {
+        alert("A análise deve ter pelo menos 10 caracteres!");
+        return;
+    }
+
+    if (nota < 0 || nota > 10) {
+        alert("A nota deve ser entre 0 e 10!");
+        return;
+    }
     const novaAnalise = {
         filme: { id: $("#filmeIdInput").val() },
         analise: $("#textoAnalise").val(),
