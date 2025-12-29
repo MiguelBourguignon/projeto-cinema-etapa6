@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema System - Análises</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="container mt-5">
+
+    <button id="btnTema" class="btn btn-dark position-absolute top-0 end-0 m-3">🌙 Modo Escuro</button>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Mural de Análises</h1>
+        <a href="index.html" class="btn btn-outline-primary">Voltar para Filmes</a>
+    </div>
+
+    <div class="card p-4 mb-5">
+        <h4>Nova Análise</h4>
+        <form id="formAnalise">
+            <div class="mb-3">
+                <label>ID do Filme:</label>
+                <input type="number" id="filmeIdInput" class="form-control" placeholder="Ex: 1" required>
+                <small class="text-muted">Veja o ID na página de filmes.</small>
+            </div>
+            <div class="mb-3">
+                <label>Sua Análise:</label>
+                <textarea id="textoAnalise" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label>Nota (0 a 10):</label>
+                <input type="number" step="0.1" id="nota" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Publicar Análise</button>
+        </form>
+    </div>
+
+    <h3>O que estão falando...</h3>
+    <div id="listaAnalises" class="row">
+        </div>
+
+    <script src="theme.js"></script>    <script src="analises.js"></script> </body>
+</html>

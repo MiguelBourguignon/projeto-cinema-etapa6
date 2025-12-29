@@ -1,0 +1,70 @@
+/* --- DARK MODE: VERSÃO "ALL BLACK" --- */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* --- CARDS (Fundo dos formulários) --- */
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #e0e0e0;
+}
+
+/* --- INPUTS (CORRIGIDO: AGORA SÃO PRETOS IGUAL A TABELA) --- */
+body.dark-mode .form-control {
+    background-color: #000000 !important; /* Preto total */
+    border-color: #333;
+    color: #ffffff !important; /* Texto branco */
+}
+
+/* Quando clica no input */
+body.dark-mode .form-control:focus {
+    background-color: #000000 !important;
+    border-color: #666;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+/* --- TABELAS --- */
+body.dark-mode .table {
+    color: #f0f0f0 !important;
+    border-color: #444;
+    --bs-table-bg: #1e1e1e;
+    --bs-table-striped-bg: #252525;
+}
+body.dark-mode .table tbody tr td {
+    color: #f0f0f0 !important;
+}
+/* Cabeçalho Preto */
+body.dark-mode .table thead th {
+    background-color: #000000;
+    color: #ffffff !important;
+    border-bottom: 2px solid #666;
+}
+/* Correção das linhas listradas */
+body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: #252525;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+body.dark-mode .table-hover > tbody > tr:hover > * {
+    background-color: #333;
+    color: #ffffff !important;
+}
+
+/* --- CORREÇÃO DOS CARDS DE ANÁLISES --- */
+body.dark-mode .card .card-title {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+body.dark-mode .card .card-subtitle {
+    color: #cccccc !important;
+}
+body.dark-mode .card .card-text {
+    color: #f0f0f0 !important;
+}
+body.dark-mode small.text-muted {
+    color: #aaaaaa !important;
+}
