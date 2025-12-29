@@ -1,12 +1,9 @@
-// URL da API
 const API_URL = "http://localhost:8080/filmes";
 
-// Quando a página carregar, busca os filmes
 $(document).ready(function() {
     listarFilmes();
 });
 
-// Função para listar (GET)
 function listarFilmes() {
     $.ajax({
         url: API_URL,
@@ -34,44 +31,27 @@ function listarFilmes() {
     });
 }
 
-// Função para Cadastrar (POST) ou Atualizar (PUT)
 $("#formFilme").submit(function(event) {
-    // 1. O primeiro passo DEVE ser parar o formulário
+    // 1. Pega o formulário puro do HTML
+    const form = this;
+
+    // 2. Validação nativa (Balãozinho de erro)
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        form.reportValidity(); // ISSO CRIA O ERRO BONITINHO
+        return false;
+    }
+
     event.preventDefault();
 
-    // 2. Captura e limpeza de dados
     const id = $("#filmeId").val();
-    const tituloVal = $("#titulo").val().trim();
-    const anoVal = parseInt($("#ano").val()); // Transforma em número real
-    const generoVal = $("#genero").val();
-    const sinopseVal = $("#sinopse").val().trim();
-
-    // 3. BLOCO DE VALIDAÇÃO (Se entrar em qualquer IF, o 'return' para o código)
-    
-    if (tituloVal === "") {
-        alert("Erro: O título do filme é obrigatório!");
-        return false; 
-    }
-
-    if (sinopseVal.length < 10) {
-        alert("Erro: A sinopse deve ter pelo menos 10 caracteres! (Você digitou apenas " + sinopseVal.length + ")");
-        return false;
-    }
-
-    if (isNaN(anoVal) || anoVal < 1888 || anoVal > 2030) {
-        alert("Erro: O ano deve ser entre 1888 e 2030. O valor " + anoVal + " é inválido!");
-        return false;
-    }
-
-    // 4. SÓ CHEGA AQUI SE TODAS AS REGRAS ACIMA FOREM VERDADEIRAS
     const filme = {
-        titulo: tituloVal,
-        sinopse: sinopseVal,
-        genero: generoVal,
-        ano: anoVal
+        titulo: $("#titulo").val().trim(),
+        sinopse: $("#sinopse").val().trim(),
+        genero: $("#genero").val(),
+        ano: parseInt($("#ano").val())
     };
 
-    // 5. Agora sim, envia para a API
     const metodo = id ? "PUT" : "POST";
     const urlFinal = id ? `${API_URL}/${id}` : API_URL;
 
@@ -90,7 +70,7 @@ $("#formFilme").submit(function(event) {
         }
     });
 });
-// Função para Deletar (DELETE)
+
 function deletarFilme(id) {
     if (confirm("Tem certeza que deseja excluir este filme?")) {
         $.ajax({
@@ -105,7 +85,6 @@ function deletarFilme(id) {
     }
 }
 
-// Função para preparar a edição
 function editarFilme(id, titulo, sinopse, genero, ano) {
     $("#filmeId").val(id);
     $("#titulo").val(titulo);

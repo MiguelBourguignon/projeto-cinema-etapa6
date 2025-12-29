@@ -11,8 +11,9 @@
 <body class="container mt-5">
     <button id="btnTema" class="btn btn-dark position-absolute top-0 end-0 m-3">🌙 Modo Escuro</button>
     <script src="theme.js"></script>
+    
     <div class="d-flex justify-content-end mb-3">
-    <a href="analises.html" class="btn btn-outline-success">Ver Análises &rarr;</a>
+        <a href="analises.html" class="btn btn-outline-success">Ver Análises &rarr;</a>
     </div>
 
     <h1 class="mb-4">Gerenciador de Filmes</h1>
@@ -20,24 +21,29 @@
     <div class="card p-4 mb-5">
         <h4>Novo Filme</h4>
         <form id="formFilme">
-            <input type="hidden" id="filmeId"> <div class="mb-3">
+            <input type="hidden" id="filmeId"> 
+            
+            <div class="mb-3">
                 <label>Título:</label>
-                <input type="text" id="titulo" class="form-control" required>
+                <input type="text" id="titulo" class="form-control" required placeholder="Digite o título">
             </div>
+
             <div class="mb-3">
                 <label>Sinopse:</label>
-                <input type="text" id="sinopse" class="form-control" required>
+                <textarea id="sinopse" class="form-control" required minlength="10" placeholder="Mínimo 10 caracteres"></textarea>
             </div>
+
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label>Gênero:</label>
-                    <input type="text" id="genero" class="form-control" required>
+                    <input type="text" id="genero" class="form-control" required placeholder="Ex: Ação">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label>Ano:</label>
-                    <input type="number" id="ano" class="form-control" required>
+                    <input type="number" id="ano" class="form-control" required min="1888" max="2030" placeholder="Ex: 2024">
                 </div>
             </div>
+            
             <button type="submit" class="btn btn-primary" id="btnSalvar">Salvar Filme</button>
             <button type="button" class="btn btn-secondary" id="btnCancelar" style="display:none;">Cancelar Edição</button>
         </form>
@@ -54,8 +60,7 @@
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody id="tabelaFilmes">
-            </tbody>
+        <tbody id="tabelaFilmes"></tbody>
     </table>
 
     <script src="script.js"></script>
