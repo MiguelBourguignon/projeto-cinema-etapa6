@@ -42,44 +42,45 @@ function listarAnalises() {
 }
 
 $("#formAnalise").submit(function(event) {
+    // 1. Para o envio automático
     event.preventDefault();
-    
+
+    // 2. Captura os valores
     const filmeId = $("#filmeIdInput").val();
     const texto = $("#textoAnalise").val().trim();
-    const nota = $("#nota").val();
+    const notaVal = parseFloat($("#nota").val()); // Transforma em número decimal
 
-    if (!filmeId) {
-        alert("Você precisa informar o ID do filme!");
-        return;
+    // --- BLOCO DE VALIDAÇÃO DA NOTA (0 a 10) ---
+    if (isNaN(notaVal) || notaVal < 0 || notaVal > 10) {
+        alert("Erro: A nota deve ser um valor entre 0 e 10!");
+        return false; // Interrompe o envio aqui
     }
 
-    if (texto.length < 10) {
-        alert("A análise deve ter pelo menos 10 caracteres!");
-        return;
+    if (texto.length < 5) {
+        alert("Erro: Por favor, escreva uma análise um pouco mais detalhada.");
+        return false;
     }
+    // -------------------------------------------
 
-    if (nota < 0 || nota > 10) {
-        alert("A nota deve ser entre 0 e 10!");
-        return;
-    }
     const novaAnalise = {
-        filme: { id: $("#filmeIdInput").val() },
-        analise: $("#textoAnalise").val(),
-        nota: $("#nota").val()
+        filme: { id: filmeId },
+        analise: texto,
+        nota: notaVal
     };
 
+    // 3. Envio AJAX
     $.ajax({
         url: API_URL,
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(novaAnalise),
         success: function() {
-            alert("Análise publicada!");
+            alert("Análise publicada com sucesso!");
             $("#formAnalise")[0].reset();
-            listarAnalises(); // Atualiza a lista na hora!
+            listarAnalises();
         },
         error: function() {
-            alert("Erro! Verifique se o ID do filme existe.");
+            alert("Erro ao publicar! Verifique se o ID do filme existe.");
         }
     });
 });
