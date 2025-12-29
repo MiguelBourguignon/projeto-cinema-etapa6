@@ -31,4 +31,11 @@ public class FilmeService {
     public void excluir(Long id) {
         repository.deleteById(id);
     }
+    
+public boolean validarNota(double nota) {
+    return nota >= 0 && nota <= 10;
+}
+public boolean verificarDuracaoValida(int minutos) {
+    return minutos > 0 && minutos <= 600;
+}
 }
